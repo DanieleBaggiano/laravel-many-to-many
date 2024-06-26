@@ -22,16 +22,20 @@
             <label for="type_id">Type:</label>
             <select name="type_id" id="type_id">
                 <option value="">Select Type...</option>
-                <option value="1" {{ $project->type_id == 1 ? 'selected' : '' }}>Type 1</option>
-                <option value="2" {{ $project->type_id == 2 ? 'selected' : '' }}>Type 2</option>
-                <option value="3" {{ $project->type_id == 3 ? 'selected' : '' }}>Type 3</option>
+                @foreach ($types as $type)
+                    <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : '' }}>
+                        {{ $type->name }}</option>
+                @endforeach
             </select>
 
             <label for="technologies">Technologies:</label>
             <select name="technologies[]" id="technologies" multiple>
-                <option value="1" {{ $project->technologies->contains(1) ? 'selected' : '' }}>Technology 1</option>
-                <option value="2" {{ $project->technologies->contains(2) ? 'selected' : '' }}>Technology 2</option>
-                <option value="3" {{ $project->technologies->contains(3) ? 'selected' : '' }}>Technology 3</option>
+                @foreach ($technologies as $technology)
+                    <option value="{{ $technology->id }}"
+                        {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>
+                        {{ $technology->name }}
+                    </option>
+                @endforeach
             </select>
 
             <button type="submit" class="btn btn-primary">Update</button>

@@ -16,16 +16,16 @@
         <label for="type_id">Type:</label>
         <select name="type_id" id="type_id">
             <option value="">Select Type...</option>
-            <option value="1">Type 1</option>
-            <option value="2">Type 2</option>
-            <option value="3">Type 3</option>
+            @foreach ($types as $type)
+                <option value="{{ $type->id }}">{{ $type->name }}</option>
+            @endforeach
         </select>
 
         <label for="technologies">Technologies:</label>
         <select name="technologies[]" id="technologies" multiple>
-            <option value="1">Technology 1</option>
-            <option value="2">Technology 2</option>
-            <option value="3">Technology 3</option>
+            @foreach ($technologies as $technology)
+                <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+            @endforeach
         </select>
 
         <button type="submit">Create</button>

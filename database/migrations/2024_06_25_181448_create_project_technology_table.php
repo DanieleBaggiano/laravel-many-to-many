@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,12 +12,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project_technology', function (Blueprint $table) {
+        Schema::create('technologies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');
-            $table->foreignId('technology_id')->constrained()->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
         });
+
+        DB::table('technologies')->insert([
+            ['name' => 'Technology 1'],
+            ['name' => 'Technology 2'],
+            ['name' => 'Technology 3'],
+        ]);
     }
 
     /**
